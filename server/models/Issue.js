@@ -7,7 +7,7 @@ const issueSchema = new Schema({
     assetId: { type: String, required: true },
     appliedDate: { type: Date, required: true },
     reason: {type: String, required: true},
-    status: { type: String, enum: ['Working...', 'Approved', 'Rejected', 'Clear', 'Pending'] , default: 'Pending' },
+    status: { type: String, enum: ['Approved', 'Rejected', 'Pending'] , default: 'Pending' },
     appliedAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 })

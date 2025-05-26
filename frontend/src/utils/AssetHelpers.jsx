@@ -80,7 +80,7 @@ export const AssetButton = ({Id, onAssetDelete}) => {
         const confirm = window.confirm("Do you want to delete ?")
         if (confirm) {
             try {
-                const response = await axios.delete(`http://localhost:3000/api/asset/${id}`, {
+                const response = await axios.delete(`http://localhost:3000/api/assets/${id}`, {
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem('token')}`
                       }

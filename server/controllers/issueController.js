@@ -32,15 +32,21 @@ const addIssue = async (req, res) => {
 const getIssue = async (req, res) => {
     try {
         const { id } = req.params;
+        console.log(`getIssue called with id: ${id}`);
 
         // Find the employee by userId
-        const employee = await Employee.findOne({ userId: id });
+        const employee = await Employee.findOne({ id });
         if (!employee) {
-            return res.status(404).json({ success: false, error: "Employee not found" });
+            console.log(`Employee not found for userId: ${id}`);
+            return res.status(404).json({ success: false, error: "Employee not found. Please ensure your employee profile exists." });
         }
 
         // Now get issues for this employee
         const issues = await Issue.find({ employeeId: employee._id });
+
+        if (!issues || issues.length === 0) {
+            return res.status(200).json({ success: true, issues: [], message: "No issues found for this employee." });
+        }
 
         return res.status(200).json({ success: true, issues });
 
@@ -48,8 +54,7 @@ const getIssue = async (req, res) => {
         console.log(error.message);
         return res.status(500).json({ success: false, error: "Server Error" });
     }
-};
-
+}
 const getIssues = async (req, res) => {
     try {
         const issues = await Issue.find().populate({

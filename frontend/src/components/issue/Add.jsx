@@ -28,7 +28,7 @@ const Add = () => {
               
             })
             if (response.data.success) {
-              navigate('/employee-dashboard/issues')
+              navigate(`/employee-dashboard/issues/${user._id}`)
             }
           } catch (error) {
             if (error.response && !error.response.data.success) {

@@ -80,18 +80,18 @@ const Table = () => {
                 onChange={filterByChange}
             />
             <div>
-                <button 
+                {/* <button 
                   className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 mr-3' 
-                  onClick={() => filterByButton('Working...')}>Working...</button>
+                  onClick={() => filterByButton('Working...')}>Working...</button> */}
                 <button 
                   className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 mr-3'
                   onClick={() => filterByButton('Approved')}>Approved</button>
                 <button 
                   className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 mr-3' 
                   onClick={() => filterByButton('Rejected')}>Rejected</button>
-                <button 
+                {/* <button 
                   className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 mr-3' 
-                  onClick={() => filterByButton('Clear')}>Clear</button>
+                  onClick={() => filterByButton('Clear')}>Clear</button> */}
                 <button 
                   className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 mr-3' 
                   onClick={() => filterByButton('Pending')}>Pending</button>

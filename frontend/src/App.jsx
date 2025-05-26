@@ -28,6 +28,7 @@ import Detail from './components/issue/Detail'
 import { Toaster } from 'react-hot-toast'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
+// import EmpAsset from './components/employee/EmpAsset'
 
 
 function App() {
@@ -102,7 +103,10 @@ function App() {
 
           <Route path='/employee-dashboard/issues/:id' element={<IssueList />}></Route>
           <Route path='/employee-dashboard/issues/add-issue' element={<AddIssue />}></Route>
+          
           <Route path='/employee-dashboard/assign/:id' element={<ViewAssign />}></Route>
+          {/* <Route path='/employee-dashboard/assign/assets/:id' element={<EmpAsset />}></Route> */}
+          
           <Route path='/employee-dashboard/setting' element={<Setting />}></Route>
 
 

@@ -31,7 +31,7 @@ const Edit = () => {
     const fetchAsset = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:3000/api/asset/${id}`,
+            `http://localhost:3000/api/assets/${id}`,
             {
               headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -74,7 +74,7 @@ const Edit = () => {
     
 
     try {
-      const response = await axios.put(`http://localhost:3000/api/asset/${id}`, asset, {
+      const response = await axios.put(`http://localhost:3000/api/assets/${id}`, asset, {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem('token')}`
         }
