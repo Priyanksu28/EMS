@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const AddDepartment = () => {
   const [department, setDepartment] = useState({
@@ -27,6 +28,7 @@ const AddDepartment = () => {
       if (response.data.success) {
         navigate('/admin-dashboard/departments')
       }
+      toast.success('Department Added')
     } catch (error) {
       if (error.response && !error.response.data.success) {
         alert(error.response.data.error)

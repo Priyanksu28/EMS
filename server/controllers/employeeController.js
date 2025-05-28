@@ -143,15 +143,26 @@ const editEmployee = async (req, res) => {
 
 const deleteEmployee = async (req, res) => {
     try {
-        const {id} = req.params;
-        const deletedEmployee = await Employee.findByIdAndDelete({_id: id})
+        const { id } = req.params;
 
-        return res.status(200).json({success: true, deletedEmployee});
+        // Step 1: Find the employee
+        const employee = await Employee.findById(id);
+        if (!employee) {
+            return res.status(404).json({ success: false, error: "Employee not found" });
+        }
+
+        // Step 2: Delete associated user
+        await User.findByIdAndDelete(employee.userId);
+
+        // Step 3: Delete the employee
+        await Employee.findByIdAndDelete(id);
+
+        return res.status(200).json({ success: true, message: "Employee and user deleted" });
     } catch (error) {
-        console.error("Error updating asset:", error);
-        return res.status(500).json({success: false, error: "Server Error while deleting asset"});
+        console.error("Error deleting employee:", error);
+        return res.status(500).json({ success: false, error: "Server Error while deleting employee" });
     }
-}
+};
 
 
 const fetchEmployeesByDepId = async (req, res) => {

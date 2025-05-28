@@ -1,5 +1,6 @@
 import Issue from "../models/Issue.js"
 import Employee from "../models/Employee.js"
+import mongoose from "mongoose"
 
 
 
@@ -33,21 +34,13 @@ const getIssue = async (req, res) => {
     try {
         const { id } = req.params;
         console.log(`getIssue called with id: ${id}`);
+        let issues = await Issue.find({employeeId: id})
 
-        // Find the employee by userId
-        const employee = await Employee.findOne({ id });
-        if (!employee) {
-            console.log(`Employee not found for userId: ${id}`);
-            return res.status(404).json({ success: false, error: "Employee not found. Please ensure your employee profile exists." });
+        if (!issues.length) {
+            const employee = await Employee.findOne({userId: id})
+            issues = await Issue.find({employeeId: employee._id})
         }
-
-        // Now get issues for this employee
-        const issues = await Issue.find({ employeeId: employee._id });
-
-        if (!issues || issues.length === 0) {
-            return res.status(200).json({ success: true, issues: [], message: "No issues found for this employee." });
-        }
-
+        
         return res.status(200).json({ success: true, issues });
 
     } catch (error) {

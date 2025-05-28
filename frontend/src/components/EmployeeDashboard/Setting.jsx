@@ -34,8 +34,13 @@ const Setting = () => {
           
         })
         if (response.data.success) {
-          navigate('/employee-dashboard/seeting')
           setError("")
+          if (user.role == 'admin') {
+            navigate('/admin-dashboard/setting')
+          }
+          else {
+            navigate('/employee-dashboard/setting')
+          }  
         }
       } catch (error) {
         if (error.response && !error.response.data.success) {

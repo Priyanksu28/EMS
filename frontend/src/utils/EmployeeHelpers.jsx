@@ -85,29 +85,29 @@ export const EmployeeButton = ({Id, onEmployeeDelete}) => {
     const navigate = useNavigate()
 
     const handledelete = async (id) => {
-        const confirm = window.confirm("Do you want to delete ?")
-        if (confirm) {
-            try {
-                const response = await axios.delete(`http://localhost:3000/api/employee/${id}`, {
-                    headers: {
-                        "Authorization": `Bearer ${localStorage.getItem('token')}`
-                      }
-                      
-                })
-                console.log("Response data from backend:", response.data);
-                if (response.data.success) {
-                    onEmployeeDelete(id)
-                }
-              }
-              catch(error) {
-                if(error.response && !error.response.data.success) {
-                  alert(error.response.data.error)
-                }
-              } 
-        }
+    const confirm = window.confirm("Do you want to delete ?");
+    if (!confirm) return;
 
-        
+    try {
+        const response = await axios.delete(`http://localhost:3000/api/employee/${id}`, {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        if (response.data.success) {
+            alert("Employee and user deleted successfully");
+            onEmployeeDelete(id);
+        }
+    } catch (error) {
+        console.error(error);
+        if (error.response && !error.response.data.success) {
+            alert(error.response.data.error);
+        }
     }
+};
+
+
 
     return (
         <div className="flex space-x-3">

@@ -6,7 +6,6 @@ import { useAuth } from '../../context/authContext';
 const List = () => {
 
   const [issues, setIssues] = useState(null)
-  const [error, setError] = useState(null)
   let sno = 1
   const {id} = useParams()
   const {user} = useAuth()
@@ -22,31 +21,18 @@ const List = () => {
 
         if (response.data.success) {
             setIssues(response.data.issues)
-            if (response.data.message) {
-                setError(response.data.message)
-            } else {
-                setError(null)
-            }
-        } else {
-            setError(response.data.error || "Failed to fetch issues")
         }
         
     } catch (error) {
-        if (error.response && error.response.data && error.response.data.error) {
-            setError(error.response.data.error)
-        } else {
-            setError("An error occurred while fetching issues")
-        }
+        if (error.response && !error.response.data.success) {
+            alert(error.message)
     }
+  }
   };
 
   useEffect(() => {
     fetchIssues();
   }, [])
-
-  if (error) {
-    return <div className="p-5 text-red-600 font-bold">Error: {error}</div>
-  }
 
   if (!issues) {
     return <div>Loading...</div>
@@ -63,7 +49,7 @@ const List = () => {
                 type="text" 
                 placeholder='Search By' 
             />
-            {user.role === 'employee' && 
+            {user.role === "employee" &&
             <Link className='px-4 py-1 bg-teal-600 rounded text-white' to="/employee-dashboard/issues/add-issue">Add New Issue</Link>
             }
           </div>
@@ -80,12 +66,7 @@ const List = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {issues.length === 0 ? (
-                      <tr>
-                        <td colSpan="6" className="text-center py-4">No issues found.</td>
-                      </tr>
-                    ) : (
-                      issues.map((issue) => (
+                    {issues.map((issue) => (
                         <tr
                             key={issue._id}
                             className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
@@ -98,11 +79,12 @@ const List = () => {
                             <td>{issue.status}</td>
                         </tr>
                       ))
-                    )}
+                    }
                 </tbody>
             </table>
         </div>
   )
 }
+
 
 export default List
