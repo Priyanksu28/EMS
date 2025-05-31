@@ -145,16 +145,17 @@ const deleteEmployee = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Step 1: Find the employee
+        
         const employee = await Employee.findById(id);
         if (!employee) {
             return res.status(404).json({ success: false, error: "Employee not found" });
         }
 
-        // Step 2: Delete associated user
+        console.log(employee.userId);
+        
         await User.findByIdAndDelete(employee.userId);
 
-        // Step 3: Delete the employee
+        
         await Employee.findByIdAndDelete(id);
 
         return res.status(200).json({ success: true, message: "Employee and user deleted" });
