@@ -78,10 +78,10 @@ const Login = () => {
               required/>
             </div>
             <div className="mb-4 flex items-center justify-between">
-              <label className="inline-flex items-center">
+              {/* <label className="inline-flex items-center">
                 <input className="form-checkbox" type="checkbox" />
                 <span className="ml-2 text-gray-700">Remember Me</span>
-              </label>
+              </label> */}
               <Link className="text-teal-600" to="/forgot-password">Forgot Password</Link>
               
             </div>

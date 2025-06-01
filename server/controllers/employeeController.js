@@ -35,6 +35,8 @@ const addEmployee = async (req, res) => {
             } = req.body;
     
             const user = await User.findOne({email})
+            console.log(user);
+            
     
             if(user) {
                 return res. status(400) . json({success: false, error: "user already registered in emp"})

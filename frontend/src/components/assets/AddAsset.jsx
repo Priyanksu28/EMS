@@ -110,7 +110,7 @@ const Add = () => {
               </ select>
             </div>
             {/* Image Upload */}
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Upload Image</label>
               <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md" 
               type="file"
@@ -119,7 +119,7 @@ const Add = () => {
               placeholder='Upload Image'
               accept='image/*'
               />
-            </div>
+            </div> */}
           </div>
           {/* Button */}
           <button className='w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded' type="submit">Add Asset</button>

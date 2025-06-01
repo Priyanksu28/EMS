@@ -61,8 +61,9 @@ const View = () => {
           </div>
           <div className="flex space-x-3 mb-5">
             <p className="text-lg font-bold">Department: </p>
-            <p className="font-medium">{asset.department_name}</p>
+            <p className="font-medium">{asset.department?.department_name || "N/A"}</p>
           </div>
+
         </div>
       </div>
     </div>

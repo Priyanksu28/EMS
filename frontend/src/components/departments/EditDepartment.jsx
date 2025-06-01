@@ -66,7 +66,7 @@ const EditDepartment = () => {
     <>{depLoading ? <div>Loading...</div> : 
     <div className="max-w-3xl mx-auto mt-100 bg-white p-8 rounded-md shadow-md w-96">
       <div>
-        <h2 className="text-2xl font-bold mb-6">Edit Asset</h2>
+        <h2 className="text-2xl font-bold mb-6">Edit Department</h2>
         <form action="" onSubmit={handleSubmit}>
             {/* Asset Nmae */}
             <div>
