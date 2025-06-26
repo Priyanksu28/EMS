@@ -10,9 +10,9 @@ const Edit = () => {
     name: '',
     email: '',
     employeeId: '',
-    maritalStatus: '',
+    // maritalStatus: '',
     designation: '',
-    salary: 0,
+    // salary: 0,
     department: ''
   })
   const navigate = useNavigate()
@@ -48,9 +48,9 @@ const Edit = () => {
               name: employee.userId.name,
               email: employee.userId.email,
               employeeId: employee.employeeId,
-              maritalStatus: employee.maritalStatus,
+              // maritalStatus: employee.maritalStatus,
               designation: employee.designation,
-              salary: employee.salary,
+              // salary: employee.salary,
               department: employee.department?._id || ''
             }));
           }
@@ -134,18 +134,18 @@ const Edit = () => {
               placeholder='Enter Employee ID'
               required/>
             </div>
-            {/* Date of Birth
+            {/* Date of Birth */}
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Date of Birth</label>
               <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md" 
               type="date"
               name='dob'
-              value={employee.dob ? new Date(employee.dob).toLocaleDateString() : "N/A"}
+              value={employee.dob ? new Date(employee.dob).toISOString().slice(0, 10) : ""}
               onChange={handleChange} 
               placeholder='DOB'
               required/>
-            </div> */}
-            {/* Marital Status */}
+            </div>
+            {/* Marital Status
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Marital Status</label>
               <select className="mt-1 w-full p-2 border border-gray-300 rounded-md" name='maritalStatus' value={employee.maritalStatus} onChange={handleChange} required>
@@ -153,7 +153,7 @@ const Edit = () => {
                 <option value="Married">Married</option>
                 <option value="Unmarried">Unmarried</option>
               </select>
-            </div>
+            </div> */}
             {/* Designation */}
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Designation</label>
@@ -165,7 +165,7 @@ const Edit = () => {
               placeholder='Enter Designation'
               required/>
             </div>
-            {/* Salary */}
+            {/* Salary
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Salary</label>
               <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md" 
@@ -175,7 +175,7 @@ const Edit = () => {
               onChange={handleChange}
               placeholder='Enter Salary'
               required/>
-            </div>
+            </div> */}
             {/* Department */}
             <div className='col-span-2'>
               <label className="block text-sm font-medium text-gray-700">Department</label>

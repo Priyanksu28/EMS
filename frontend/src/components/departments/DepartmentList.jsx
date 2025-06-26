@@ -9,46 +9,45 @@ const DepartmentList = () => {
   const [deploading, setDepLoading] = useState(false)
   const [filteredDepartments, setFilteredDepartments] = useState([])
 
-  const onDepartmentDelete = async (id) => {
-    const data = departments.filter(dep => dep._id !== id )
-    setDepartments(data)
+  const fetchDepartment = async () => {
+    setDepLoading(true)
+    try {
+      const response = await axios.get('http://localhost:3000/api/department', {
+        headers: {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      if (response.data.success) {
+        let sno = 1    
+        const data = response.data.departments.map((dep) => (
+          {
+            _id: dep._id,
+            sno: sno++,
+            department_name: dep.department_name,
+            action: (<DepartmentButton Id={dep._id} onDepartmentDelete={onDepartmentDelete} />),
+          }
+        ))
+        setDepartments(data)
+        setFilteredDepartments(data)
+      }
+    }
+    catch(error) {
+      if(error.response && !error.response.data.success) {
+        alert(error.response.data.error)
+      }
+    }
+    finally{
+      setDepLoading(false)
+    }
   }
 
   useEffect(() => {
-    const fetchDepartment = async () => {
-        setDepLoading(true)
-      try {
-        const response = await axios.get('http://localhost:3000/api/department', {
-          headers: {
-            "Authorization" : `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-        if (response.data.success) {
-          let sno = 1
-          const data = await response.data.departments.map((dep) => (
-            {
-              _id: dep._id,
-              sno: sno++,
-              department_name: dep.department_name,
-              action: (<DepartmentButton Id={dep._id} onDepartmentDelete={onDepartmentDelete} />),
-            }
-          ))
-          setDepartments(data)
-          setFilteredDepartments(data)
-        }
-      }
-      catch(error) {
-        if(error.response && !error.response.data.success) {
-          alert(error.response.data.error)
-        }
-      }
-      finally{
-        setDepLoading(false)
-      }
-    }
     fetchDepartment()
   }, [])
 
+  const onDepartmentDelete = async () => {
+    await fetchDepartment()
+  }
 
   const filterDepartment = (e) => {
     const records = departments.filter((dep) => dep.department_name.toLowerCase().includes(e.target.value.toLowerCase()))

@@ -52,7 +52,7 @@ const View = () => {
           ["DOB", employee.dob ? new Date(employee.dob).toLocaleDateString() : "N/A"],
           ["Gender", employee.gender],
           ["Department Name", employee.department?.department_name || "N/A"],
-          ["Marital Status", employee.maritalStatus],
+          // ["Marital Status", employee.maritalStatus],
           ["Designation", employee.designation]
         ].map(([label, value]) => (
           <div key={label} className="grid grid-cols-2 gap-2">

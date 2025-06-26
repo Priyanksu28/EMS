@@ -26,10 +26,10 @@ const addEmployee = async (req, res) => {
             employeeId,
             dob,
             gender,
-            maritalStatus,
+            // maritalStatus,
             designation,
             department,
-            salary,
+            // salary,
             password,
             role,
             } = req.body;
@@ -58,10 +58,10 @@ const addEmployee = async (req, res) => {
                 employeeId,
                 dob,
                 gender,
-                maritalStatus,
+                // maritalStatus,
                 designation,
                 department,
-                salary
+                // salary
             })
             await newEmployee.save()
             return res.status(200).json({success: true, message: "employee created"})
@@ -105,9 +105,9 @@ const editEmployee = async (req, res) => {
             name, 
             email,
             employeeId,
-            maritalStatus,
+            // maritalStatus,
             designation,
-            salary,
+            // salary,
             department} = req.body;
 
             const employee = await Employee.findById({_id: id})
@@ -123,9 +123,9 @@ const editEmployee = async (req, res) => {
 
             const updatedEmployee = await Employee.findByIdAndUpdate({_id: id}, {
                 employeeId,
-                maritalStatus,
+                // maritalStatus,
                 designation,
-                salary,
+                // salary,
                 department
             },
             { new: true }

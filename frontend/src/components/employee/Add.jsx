@@ -109,7 +109,7 @@ const Add = () => {
                 <option value="Female">Female</option>
               </select>
             </div>
-            {/* Marital Status */}
+            {/* Marital Status
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Marital Status</label>
               <select className="mt-1 w-full p-2 border border-gray-300 rounded-md" name='maritalStatus' onChange={handleChange} required>
@@ -117,7 +117,7 @@ const Add = () => {
                 <option value="Married">Married</option>
                 <option value="Unmarried">Unmarried</option>
               </select>
-            </div>
+            </div> */}
             {/* Designation */}
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Designation</label>
@@ -138,7 +138,7 @@ const Add = () => {
                 ))}
               </ select>
             </div>
-            {/* Salary */}
+            {/* Salary
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Salary</label>
               <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md" 
@@ -147,7 +147,7 @@ const Add = () => {
               onChange={handleChange}
               placeholder='Enter Salary'
               required/>
-            </div>
+            </div> */}
             {/* Password */}
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Password</label>
@@ -167,7 +167,7 @@ const Add = () => {
                 <option value="employee">Employee</option>
               </select>
             </div>
-            {/* Image Upload */}
+            {/* Image Upload
             <div>
               <label className="block text-sm font-medium text-gray-700" htmlFor="">Upload Image</label>
               <input className="mt-1 p-2 block w-full border border-gray-300 rounded-md" 
@@ -177,7 +177,7 @@ const Add = () => {
               placeholder='Upload Image'
               accept='image/*'
               required/>
-            </div>
+            </div> */}
           </div>
           {/* Button */}
           <button className='w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded' type="submit">Add Employee</button>

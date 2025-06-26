@@ -31,7 +31,7 @@ const List = () => {
               department_name: emp.department?.department_name || "N/A",
               name: emp.userId.name,
               dob: new Date(emp.dob).toLocaleDateString(),
-              profileImage: < img width={40} className='rounded-full' src={`http://localhost:3000/${emp. userId.profileImage}` } />,
+              // profileImage: < img width={40} className='rounded-full' src={`http://localhost:3000/${emp. userId.profileImage}` } />,
               action: (<EmployeeButton Id={emp._id}/>)
             }
           ))

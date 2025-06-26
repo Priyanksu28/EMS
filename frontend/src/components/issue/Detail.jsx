@@ -66,7 +66,7 @@ const Detail = () => {
         <div>
           <div className="flex space-x-3 mb-5">
             <p className="text-1g font-bold">Name: </p>
-            <p className="font-medium">{issue.employeeId.userId.name}</p>
+            <p className="font-medium">{issue.employeeId?.userId?.name}</p>
           </div>
           <div className="flex space-x-3 mb-5">
             <p className="text-1g font-bold">Asset Id: </p>

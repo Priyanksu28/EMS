@@ -10,6 +10,8 @@ const ResetPassword = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
+  const resetOtp = sessionStorage.getItem("resetOtp");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -18,6 +20,7 @@ const ResetPassword = () => {
     try {
       const res = await axios.post("http://localhost:3000/api/auth/reset-password", {
         token,
+        resetOtp,
         newPassword,
       });
 

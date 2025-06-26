@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import ReCAPTCHA from "react-google-recaptcha";
 import { useAuth } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -9,16 +10,27 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [captchaToken, setCaptchaToken] = useState('');
     const [error, setError] = useState(null)
     const {login} = useAuth()
     const navigate = useNavigate()
 
+    // const handleCaptcha = (value) => {
+    // setCaptchaToken(value);
+    // };
+
     const handlesubmit = async (e) => {
         e.preventDefault()
+
+        if (!captchaToken) {
+          alert("Please verify the captcha.");
+          return;
+        }
+
         try {
             const response = await axios.post(
               "http://localhost:3000/api/auth/login", 
-              {email, password})
+              {email, captchaToken, password})
             if(response.data.success) {
 
               login(response.data.user)
@@ -85,6 +97,12 @@ const Login = () => {
               <Link className="text-teal-600" to="/forgot-password">Forgot Password</Link>
               
             </div>
+            <ReCAPTCHA
+              sitekey="6LfbIWwrAAAAACRG1IZ0yZbI1PX5r0rzDfQYd7il"  
+              onChange={(value) => setCaptchaToken(value)}
+              className="mb-4"
+            />
+
             <div className="mb-4">
               <button className="w-full bg-teal-600 text-white py-2 rounded" type="submit">Login</button>
             </div>

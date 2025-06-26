@@ -37,6 +37,11 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/reset-password/:token', (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html'));
   });
+
+  // Catch-all route to serve React frontend for client-side routing
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html'));
+  });
 }
 
 app.listen(process.env.PORT, () => {
