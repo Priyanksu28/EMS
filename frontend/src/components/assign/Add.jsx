@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Add = () => {
   const [assign, setAssign] = useState({
       employeeId: null,
+      
       assetId: null,
       assignDate: null
     })

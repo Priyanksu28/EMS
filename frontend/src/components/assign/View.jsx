@@ -31,6 +31,28 @@ const View = () => {
     }
   };
 
+  const handleUnassign = async (assignId) => {
+  if (!window.confirm("Are you sure you want to unassign this asset?")) return;
+
+  try {
+    const res = await axios.delete(`http://localhost:3000/api/assign/delete/${assignId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (res.data.success) {
+      fetchAssigns(); // Refresh list
+    } else {
+      alert("Failed to unassign asset");
+    }
+  } catch (error) {
+    alert("Error while unassigning");
+    console.log(error);
+  }
+};
+
+
   useEffect(() => {
     fetchAssigns();
   }, []);
@@ -41,6 +63,8 @@ const View = () => {
     );
     setFilteredAssigns(filteredRecords);
   };
+
+  const role = localStorage.getItem("role") || "employee";
 
   return (
     <>
@@ -78,18 +102,31 @@ const View = () => {
                     <td>{sno++}</td>
                     <td>{assign.assetId?.assetId || "N/A"}</td>
                     <td>{new Date(assign.assignDate).toLocaleDateString()}</td>
-                    <td>
-                      {assign.assetId ? (
+                    <td className="flex gap-4">
+                    {assign.assetId ? (
+                      <>
                         <Link
-                          to={`/admin-dashboard/assets/${assign.assetId._id}`}
+                          to={`/${role}-dashboard/assets/${assign.assetId._id}`}
                           className="text-blue-500 hover:underline"
                         >
                           View
                         </Link>
-                      ) : (
-                        <span className="text-gray-400">No Asset</span>
-                      )}
-                    </td>
+
+                        {/* ✅ Only show Unassign if role is admin */}
+                        {role === "admin" && (
+                          <button
+                            onClick={() => handleUnassign(assign._id)}
+                            className="text-red-500 hover:underline"
+                          >
+                            Unassign
+                          </button>
+                        )}
+                      </>
+                    ) : (
+                      <span className="text-gray-400">No Asset</span>
+                    )}
+                  </td>
+
                   </tr>
                 ))}
               </tbody>

@@ -7,6 +7,7 @@ const assetSchema = new Schema({
     assetType: {type: String, required: true},
     location: {type: String, required: true},
     department: { type: Schema. Types. ObjectId, ref: "Department", required: true },
+    assignedTo: { type: Schema.Types.ObjectId, ref: "Employee", default: null },
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}
 })

@@ -107,6 +107,7 @@ function App() {
           <Route path='/employee-dashboard/issues/add-issue' element={<AddIssue />}></Route>
           
           <Route path='/employee-dashboard/assign/:id' element={<ViewAssign />}></Route>
+          <Route path='/employee-dashboard/assets/:id' element={<ViewAsset />} />
           {/* <Route path='/employee-dashboard/assign/assets/:id' element={<EmpAsset />}></Route> */}
           
           <Route path='/employee-dashboard/setting' element={<Setting />}></Route>

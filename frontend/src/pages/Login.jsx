@@ -32,12 +32,15 @@ const Login = () => {
               "http://localhost:3000/api/auth/login", 
               {email, captchaToken, password})
             if(response.data.success) {
+              const user = response.data.user;
+              localStorage.setItem("role", user.role);
 
-              login(response.data.user)
+              
               localStorage.setItem("token", response.data.token)
+              login(user)
               console.log(response.data);
               
-              if (response.data.user.role === "admin") {
+              if (user.role === "admin") {
                 navigate('/admin-dashboard')
               }
               else {

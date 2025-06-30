@@ -4,6 +4,7 @@ import Employee from "../models/Employee.js"
 
 const addAssign = async (req, res) =>{
     try {
+        console.log("Received body:", req.body);
         const {employeeId, assetId, assignDate} = req.body
 
         const newAssign = new Assign({
@@ -17,9 +18,21 @@ const addAssign = async (req, res) =>{
         return res.status(200).json({success: true})
 
     } catch (error) {
+        console.error("Add Assign Error:", error);
         return res.status(500).json({success: false, error: "Server Error"})
     }
 }
+
+const deleteAssign = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Assign.findByIdAndDelete(id);
+        return res.status(200).json({ success: true, message: "Assignment deleted" });
+    } catch (error) {
+        return res.status(500).json({ success: false, error: "Server Error" });
+    }
+};
+
 
 const getAssign = async (req, res) => {
     try {
@@ -36,4 +49,4 @@ const getAssign = async (req, res) => {
     }
 }
 
-export {addAssign, getAssign}
+export { addAssign, getAssign, deleteAssign };
