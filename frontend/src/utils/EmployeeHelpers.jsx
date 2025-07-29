@@ -26,13 +26,14 @@ export const columns = [
     {
         name: "DOB",
         selector: (row) => row.dob,
-        width: "130px"
+        width: "130px",
+        center: true
     },
     {
         name: "Action",
         selector: (row) => row.action,
         width: "300px",
-        center: "true"
+        center: true
     }
     
 ]

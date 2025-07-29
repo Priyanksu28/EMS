@@ -14,7 +14,7 @@ const AdminDashboard = () => {
       <AdminSidebar />
       <div className='flex-1 ml-64 bg-gray-100 h-screen'>
         <Navbar />
-        <Outlet />
+        <Outlet />     {/* Dynamic content for subpages */}
       </div>
     </div>
   )

@@ -68,6 +68,7 @@ const AdminSummary = () => {
               cy="50%"
               outerRadius={100}
               label
+              isAnimationActive={true}
             >
               {[
                 { name: 'Assigned', value: summary.assignedAssets },
